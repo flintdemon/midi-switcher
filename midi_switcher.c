@@ -1,7 +1,7 @@
-//By Vitaly Vasiliev 09.2013
+//by Vitaly Vasiliev 09.2013
 
 #include <EEPROM.h>
-#include <MIDI.h> //You need this third-based library for MIDI interation
+#include <MIDI.h> //You need this third-based library for MIDI interaction
 #include <alloc.h>
 
 volatile byte currentPreset;
@@ -50,7 +50,7 @@ boolean findPreset(byte number)
 int eepromSize() {
   int address = 0;
   byte value = EEPROM.read(address);
-  if (value == 255) return 0; //на всякий случай при пустой памяти
+  if (value == 255) return 0; //just in case with empty memory 
   while(value!=255)
   {
     value = EEPROM.read(address);
@@ -87,7 +87,7 @@ void setup() {
  
   digitalWrite(statusLedPin, HIGH);  //////
   delay(1000);                       //////
-  digitalWrite(statusLedPin, LOW);   ////// отладка 
+  digitalWrite(statusLedPin, LOW);   ////// for debug
   
 }
 
@@ -146,7 +146,7 @@ void deleteButtonPressed()
     tempCounter++;
   }
   
-  //обнуляем последнюю запись в EEPROM
+  //reset the last record in the EEPROM 
   EEPROM.write(m_eepromSize, 255);
   free(m_eepromValues);
   m_eepromSize--; 
